@@ -6,7 +6,7 @@ cd workspace
 amass enum  -v -src -ip -brute -min-for-recursive 2 -d $HLD
 amass  viz -d3 -d $HLD
 cat /home/ibex/.config/amass/amass.txt | cut -d']' -f 2 | awk '{print $1}' | sort -u > hosts-amass.txt
-cat hosts-amass.txt | docker run -i gcr.io/gcp-builder-project/httprobe:latest > uphosts.txt
+cat hosts-amass.txt | docker run -i httprobe:latest > uphosts.txt
 smfilename="uphosts.txt"
 cat uphosts.txt | hakrawler -plain -depth 5 -usewayback -scope fuzzy > spidered.txt
 cat uphosts.txt | aquatone -out /output -ports "xlarge" 
